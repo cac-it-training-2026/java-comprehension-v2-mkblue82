@@ -17,6 +17,7 @@ public class SystemMain02 {
 		member.rankUp();
 
 		int newRank = member.getRank();
+		System.out.println("---GET RANK---");
 		System.out.println("newRank:" + newRank);
 	}
 }

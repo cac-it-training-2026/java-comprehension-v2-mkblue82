@@ -67,7 +67,6 @@ public class Member extends AbstMember {
 	 * @return rank
 	 */
 	public int getRank() {
-		System.out.println("---GET RANK---");
 		return rank;
 	}
 

@@ -87,7 +87,6 @@ class Member {
 	 * @return rank
 	 */
 	public int getRank() {
-		System.out.println("---GET RANK---");
 		return rank;
 	}
 

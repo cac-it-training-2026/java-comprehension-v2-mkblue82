@@ -1,14 +1,11 @@
-package q02_advanced.question02;
+package q02_advanced.question03;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Member 会員クラス
- */
+import q02_advanced.question02.Coupon;
 
 public class Member {
-
 	/** 会員ID */
 	private int id;
 	/** パスワード */

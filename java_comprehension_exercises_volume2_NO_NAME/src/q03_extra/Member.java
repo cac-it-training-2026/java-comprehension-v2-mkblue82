@@ -1,22 +1,20 @@
-package q02_advanced.question02;
+package q03_extra;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-/**
- * Member 会員クラス
- */
-
 public class Member {
-
 	/** 会員ID */
 	private int id;
 	/** パスワード */
 	private String password;
 	/** 名前 */
 	private String name;
-	/** 年齢 */
-	private int age;
+	/** 誕生日 */
+	private Date birthday;
 	/** ランク */
 	private int rank;
 	/** クーポン */
@@ -65,20 +63,6 @@ public class Member {
 	}
 
 	/**
-	 * @return age
-	 */
-	public int getAge() {
-		return age;
-	}
-
-	/**
-	 * @param age セットする age
-	 */
-	public void setAge(int age) {
-		this.age = age;
-	}
-
-	/**
 	 * @return rank
 	 */
 	public int getRank() {
@@ -107,6 +91,20 @@ public class Member {
 	}
 
 	/**
+	 * @return birthday
+	 */
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	/**
+	 * @param birthday セットする birthday
+	 */
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+
+	/**
 	 * 
 	 */
 	public Member() {
@@ -120,11 +118,11 @@ public class Member {
 	 * @param rank
 	 * @param coupons
 	 */
-	public Member(int id, String password, String name, int age, int rank) {
+	public Member(int id, String password, String name, Date birthday, int rank) {
 		this.id = id;
 		this.password = password;
 		this.name = name;
-		this.age = age;
+		this.birthday = birthday;
 		this.rank = rank;
 
 		this.coupons = new ArrayList<>();
@@ -132,8 +130,8 @@ public class Member {
 
 	@Override
 	public String toString() {
-		return "Member [id=" + id + ", password=" + password + ", name=" + name + ", age=" + age + ", rank=" + rank
-				+ ", coupons=" + coupons + "]";
+		return "Member [id=" + id + ", password=" + password + ", name=" + name + ", birthday=" + birthday + ", rank="
+				+ rank + ", coupons=" + coupons + "]";
 	}
 
 	public void showMember() {
@@ -141,8 +139,13 @@ public class Member {
 		System.out.println("******************");
 	}
 
-	public static Member getInstance(int id, String password, String name, int age, int rank) {
-		Member member = new Member(id, password, name, age, rank);
+	public static Member getInstance(int id, String password, String name, String birthdayString)
+			throws ParseException {
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		Date birthday = sdf.parse(birthdayString);
+
+		Member member = new Member(id, password, name, birthday, (int) ((Math.random() * 3) + 1));
 
 		member.coupons.add(Coupon.getInstance(1, 0.5, "最初の特典"));
 		member.coupons.add(Coupon.getInstance(2, 0.25, "今月の特典"));

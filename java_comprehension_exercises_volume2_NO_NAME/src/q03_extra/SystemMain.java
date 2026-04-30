@@ -1,5 +1,7 @@
 package q03_extra;
 
+import java.text.ParseException;
+
 /**
  * この問題は採点対象外です。時間が余った際に解いてください
  * また、テストクラスはありません。問題文と出力例を参考に実装してください。
@@ -51,7 +53,7 @@ input birthday>>2000/8/32
  */
 public class SystemMain {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException, SystemErrorException, IllegalInputException {
 
 		MemberStorage memberStorage = new MemberStorage();
 		CreateUserService createUserService = new CreateUserService(memberStorage);
@@ -63,7 +65,24 @@ public class SystemMain {
 
 		System.out.println("新規に会員登録します。必要事項を入力してください");
 		//TODO ここから実装する
+		MemberIdReader memberId = new MemberIdReader();
+		MemberPasswordReader memberPass = new MemberPasswordReader();
+		MemberNameReader memberName = new MemberNameReader();
+		MemberBirthdayReader memberBirth = new MemberBirthdayReader();
 
+		System.out.print("input id[1-9]>>");
+		inputId = (int) memberId.input();
+
+		System.out.print("input pasword>>");
+		inputPassword = (String) memberPass.input();
+
+		System.out.print("input name>");
+		inputName = (String) memberName.input();
+
+		System.out.print("input birthday>>");
+		inputBirthday = (String) memberBirth.input();
+
+		MemberManager.ShowCreateUser(memberStorage.getMembers(), inputId);
 	}
 
 }

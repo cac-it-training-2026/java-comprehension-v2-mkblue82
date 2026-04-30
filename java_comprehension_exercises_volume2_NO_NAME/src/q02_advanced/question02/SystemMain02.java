@@ -30,7 +30,9 @@ public class SystemMain02 {
 			System.out.print("input new password>>");
 			newPassword = con.inputString();
 		} catch (Exception e) {
+			System.out.println("不正な入力です");
 			e.printStackTrace();
+			return;
 		}
 
 		MemberManager.updatePassword(members, targetId, newPassword);
