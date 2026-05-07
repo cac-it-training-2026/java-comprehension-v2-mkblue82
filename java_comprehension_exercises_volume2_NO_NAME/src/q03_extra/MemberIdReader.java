@@ -1,5 +1,8 @@
 package q03_extra;
 
+/**
+ * メンバーIDクラス
+ */
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
