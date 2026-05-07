@@ -1,5 +1,6 @@
 package q03_extra;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,8 +10,9 @@ public class MemberStorage {
 
 	/**
 	 * @param members
+	 * @throws ParseException 
 	 */
-	public MemberStorage() {
+	public MemberStorage() throws ParseException {
 		this.members = new ArrayList<>();
 		members.add(Member.getInstance(1, "Passw0rd", "Miura Manabu", "1998/02/21"));
 		members.add(Member.getInstance(2, "aaaaAAAA", "Sato Kensuke", "1986/04/16"));

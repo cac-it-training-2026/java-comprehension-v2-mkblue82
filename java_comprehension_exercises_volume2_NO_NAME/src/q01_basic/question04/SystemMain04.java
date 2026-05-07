@@ -7,6 +7,12 @@ public class SystemMain04 {
 		Member[] members = new Member[2];
 		//TODO ここから実装する
 
+		members[0] = new Member(1, "PasswOrd", "Miura Manabu", 28, 2);
+		members[1] = new Member(2, "aaaAAA", "Sato Kensuke", 43, 1);
+
+		System.out.println("---SHOW ALL MEMBERS---");
+
+		MemberManager.showAllMembers(members);
 	}
 
 }

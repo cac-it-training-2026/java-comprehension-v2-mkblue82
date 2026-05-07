@@ -1,5 +1,7 @@
 package q03_extra;
 
+import java.text.ParseException;
+
 /**
  * この問題は採点対象外です。時間が余った際に解いてください
  * また、テストクラスはありません。問題文と出力例を参考に実装してください。
@@ -51,7 +53,7 @@ input birthday>>2000/8/32
  */
 public class SystemMain {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException, SystemErrorException, IllegalInputException {
 
 		MemberStorage memberStorage = new MemberStorage();
 		CreateUserService createUserService = new CreateUserService(memberStorage);
@@ -63,6 +65,59 @@ public class SystemMain {
 
 		System.out.println("新規に会員登録します。必要事項を入力してください");
 		//TODO ここから実装する
+		while (!isCreated) {
+			MemberIdReader memberId = new MemberIdReader();
+			MemberPasswordReader memberPass = new MemberPasswordReader();
+			MemberNameReader memberName = new MemberNameReader();
+			MemberBirthdayReader memberBirth = new MemberBirthdayReader();
+
+			// IDの入力処理
+			try {
+				System.out.print("input id[1-9]>>");
+				inputId = (int) memberId.input();
+			} catch (IllegalInputException e) {
+				System.out.println(e.getMessage());
+				continue;
+			}
+
+			// パスワードの入力処理
+			try {
+				System.out.print("input pasword>>");
+				inputPassword = (String) memberPass.input();
+			} catch (IllegalInputException e) {
+				System.out.println(e.getMessage());
+				continue;
+			}
+
+			// 名前の入力処理
+			try {
+				System.out.print("input name>");
+				inputName = (String) memberName.input();
+			} catch (IllegalInputException e) {
+				System.out.println(e.getMessage());
+				continue;
+			}
+
+			// 生年月日の入力処理
+			try {
+				System.out.print("input birthday>>");
+				inputBirthday = (String) memberBirth.input();
+			} catch (IllegalInputException e) {
+				System.out.println(e.getMessage());
+				continue;
+			}
+
+			// ユーザー登録処理
+			try {
+				isCreated = createUserService.execute(inputId, inputPassword, inputName, inputBirthday);
+			} catch (IllegalInputException e) { // IDが重複した時
+				System.out.println(e.getMessage());
+			}
+		}
+
+		System.out.println("ユーザーが作成されました。");
+		System.out.println("ユーザー情報を表示します。");
+		MemberManager.ShowCreateUser(memberStorage.getMembers(), inputId);
 
 	}
 
