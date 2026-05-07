@@ -130,7 +130,9 @@ public class Member {
 
 	@Override
 	public String toString() {
-		return "Member [id=" + id + ", password=" + password + ", name=" + name + ", birthday=" + birthday + ", rank="
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		return "Member [id=" + id + ", password=" + password + ", name=" + name + ", birthday=" + sdf.format(birthday)
+				+ ", rank="
 				+ rank + ", coupons=" + coupons + "]";
 	}
 

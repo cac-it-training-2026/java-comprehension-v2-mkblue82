@@ -23,14 +23,11 @@ class CreateUserService {
 			throws IllegalInputException, ParseException {
 		for (Member member : memberStorage.getMembers()) {
 			if (member.getId() == id) {
-				System.out.println("IDが重複しています。再度入力してください");
-				throw new IllegalInputException();
-			} else {
-				this.memberStorage.getMembers().add(Member.getInstance(id, password, name, birthday));
-				return true;
+				throw new IllegalInputException("IDが重複しています。再度入力してください");
 			}
 		}
 
-		return false;
+		this.memberStorage.getMembers().add(Member.getInstance(id, password, name, birthday));
+		return true;
 	}
 }
